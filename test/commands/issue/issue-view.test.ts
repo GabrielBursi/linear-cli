@@ -1426,3 +1426,180 @@ await snapshotTest({
     }
   },
 })
+
+await snapshotTest({
+  name: "Issue View Command - Shows Estimate",
+  meta: import.meta,
+  colors: false,
+  args: ["TEST-123", "--no-comments"],
+  denoArgs,
+  async fn() {
+    const server = new MockLinearServer([
+      {
+        queryName: "GetIssueDetails",
+        variables: { id: "TEST-123" },
+        response: {
+          data: {
+            issue: {
+              identifier: "TEST-123",
+              title: "Fix authentication bug in login flow",
+              description: null,
+              url:
+                "https://linear.app/test-team/issue/TEST-123/fix-authentication-bug-in-login-flow",
+              branchName: "fix/test-123-auth-bug",
+              state: {
+                name: "In Progress",
+                color: "#f87462",
+              },
+              assignee: null,
+              priority: 2,
+              estimate: 3,
+              project: null,
+              projectMilestone: null,
+              parent: null,
+              children: {
+                nodes: [],
+              },
+              attachments: {
+                nodes: [],
+              },
+              labels: {
+                nodes: [],
+              },
+            },
+          },
+        },
+      },
+    ])
+
+    try {
+      await server.start()
+      Deno.env.set("LINEAR_GRAPHQL_ENDPOINT", server.getEndpoint())
+      Deno.env.set("LINEAR_API_KEY", "Bearer test-token")
+
+      await viewCommand.parse()
+    } finally {
+      await server.stop()
+      Deno.env.delete("LINEAR_GRAPHQL_ENDPOINT")
+      Deno.env.delete("LINEAR_API_KEY")
+    }
+  },
+})
+
+await snapshotTest({
+  name: "Issue View Command - Omits Missing Estimate",
+  meta: import.meta,
+  colors: false,
+  args: ["TEST-123", "--no-comments"],
+  denoArgs,
+  async fn() {
+    const server = new MockLinearServer([
+      {
+        queryName: "GetIssueDetails",
+        variables: { id: "TEST-123" },
+        response: {
+          data: {
+            issue: {
+              identifier: "TEST-123",
+              title: "Fix authentication bug in login flow",
+              description: null,
+              url:
+                "https://linear.app/test-team/issue/TEST-123/fix-authentication-bug-in-login-flow",
+              branchName: "fix/test-123-auth-bug",
+              state: {
+                name: "In Progress",
+                color: "#f87462",
+              },
+              assignee: null,
+              priority: 2,
+              estimate: null,
+              project: null,
+              projectMilestone: null,
+              parent: null,
+              children: {
+                nodes: [],
+              },
+              attachments: {
+                nodes: [],
+              },
+              labels: {
+                nodes: [],
+              },
+            },
+          },
+        },
+      },
+    ])
+
+    try {
+      await server.start()
+      Deno.env.set("LINEAR_GRAPHQL_ENDPOINT", server.getEndpoint())
+      Deno.env.set("LINEAR_API_KEY", "Bearer test-token")
+
+      await viewCommand.parse()
+    } finally {
+      await server.stop()
+      Deno.env.delete("LINEAR_GRAPHQL_ENDPOINT")
+      Deno.env.delete("LINEAR_API_KEY")
+    }
+  },
+})
+
+await snapshotTest({
+  name: "Issue View Command - JSON Output With Estimate",
+  meta: import.meta,
+  colors: false,
+  args: ["TEST-123", "--json", "--no-comments"],
+  denoArgs,
+  async fn() {
+    const server = new MockLinearServer([
+      {
+        queryName: "GetIssueDetails",
+        variables: { id: "TEST-123" },
+        response: {
+          data: {
+            issue: {
+              identifier: "TEST-123",
+              title: "Fix authentication bug in login flow",
+              description: null,
+              url:
+                "https://linear.app/test-team/issue/TEST-123/fix-authentication-bug-in-login-flow",
+              branchName: "fix/test-123-auth-bug",
+              state: {
+                name: "In Progress",
+                color: "#f87462",
+              },
+              assignee: null,
+              priority: 2,
+              estimate: 8,
+              project: null,
+              projectMilestone: null,
+              parent: null,
+              children: {
+                nodes: [],
+              },
+              attachments: {
+                nodes: [],
+              },
+              labels: {
+                nodes: [],
+              },
+            },
+          },
+        },
+      },
+    ])
+
+    try {
+      await server.start()
+      Deno.env.set("LINEAR_GRAPHQL_ENDPOINT", server.getEndpoint())
+      Deno.env.set("LINEAR_API_KEY", "Bearer test-token")
+
+      await viewCommand.parse()
+    } finally {
+      await server.stop()
+      Deno.env.delete("LINEAR_GRAPHQL_ENDPOINT")
+      Deno.env.delete("LINEAR_API_KEY")
+    }
+  },
+})

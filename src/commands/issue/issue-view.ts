@@ -154,6 +154,9 @@ export const viewCommand = new Command()
         ? `@${issueData.assignee.displayName}`
         : "Unassigned"
       metaParts.push(`**Assignee:** ${assigneeDisplay}`)
+      if (issueData.estimate != null) {
+        metaParts.push(`**Estimate:** ${issueData.estimate}`)
+      }
       if (issueData.project) {
         metaParts.push(`**Project:** ${issueData.project.name}`)
       }

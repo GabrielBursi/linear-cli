@@ -557,3 +557,56 @@ stdout:
 stderr:
 ""
 `;
+
+snapshot[`Issue View Command - Shows Estimate 1`] = `
+stdout:
+"# TEST-123: Fix authentication bug in login flow
+
+**State:** In Progress | **Priority:** ▄▆█ | **Assignee:** Unassigned | **Estimate:** 3
+"
+stderr:
+""
+`;
+
+snapshot[`Issue View Command - Omits Missing Estimate 1`] = `
+stdout:
+"# TEST-123: Fix authentication bug in login flow
+
+**State:** In Progress | **Priority:** ▄▆█ | **Assignee:** Unassigned
+"
+stderr:
+""
+`;
+
+snapshot[`Issue View Command - JSON Output With Estimate 1`] = `
+stdout:
+'{
+  "identifier": "TEST-123",
+  "title": "Fix authentication bug in login flow",
+  "description": null,
+  "url": "https://linear.app/test-team/issue/TEST-123/fix-authentication-bug-in-login-flow",
+  "branchName": "fix/test-123-auth-bug",
+  "state": {
+    "name": "In Progress",
+    "color": "#f87462"
+  },
+  "assignee": null,
+  "priority": 2,
+  "estimate": 8,
+  "project": null,
+  "projectMilestone": null,
+  "parent": null,
+  "children": {
+    "nodes": []
+  },
+  "attachments": {
+    "nodes": []
+  },
+  "labels": {
+    "nodes": []
+  }
+}
+'
+stderr:
+""
+`;

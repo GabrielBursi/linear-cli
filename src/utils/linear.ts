@@ -248,6 +248,7 @@ const issueDetailsWithCommentsQuery = gql(/* GraphQL */ `
         displayName
       }
       priority
+      estimate
       project {
         name
       }
@@ -361,6 +362,7 @@ const issueDetailsQuery = gql(/* GraphQL */ `
         displayName
       }
       priority
+      estimate
       project {
         name
       }
