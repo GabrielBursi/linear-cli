@@ -1,0 +1,64 @@
+export const snapshot = {};
+
+snapshot[`Issue Estimate Command - Help Text 1`] = `
+stdout:
+"
+Usage: estimate [issueId]
+
+Description:
+
+  Print the issue estimate (prints an empty line when the issue has no estimate)
+
+Options:
+
+  -h, --help  - Show this help.  
+  -j, --json  - Output as JSON   
+
+"
+stderr:
+""
+`;
+
+snapshot[`Issue Estimate Command - Prints Estimate 1`] = `
+stdout:
+"3
+"
+stderr:
+""
+`;
+
+snapshot[`Issue Estimate Command - No Estimate Prints Empty Line 1`] = `
+stdout:
+"
+"
+stderr:
+""
+`;
+
+snapshot[`Issue Estimate Command - Prints JSON 1`] = `
+stdout:
+'{
+  "estimate": 5
+}
+'
+stderr:
+""
+`;
+
+snapshot[`Issue Estimate Command - Prints JSON Null 1`] = `
+stdout:
+'{
+  "estimate": null
+}
+'
+stderr:
+""
+`;
+
+snapshot[`Issue Estimate Command - Issue Not Found 1`] = `
+stdout:
+""
+stderr:
+"✗ Failed to get issue estimate: Issue not found: TEST-999
+"
+`;

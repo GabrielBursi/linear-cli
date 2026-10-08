@@ -18,24 +18,25 @@ Options:
 
 Commands:
 
-  id                                      - Print the issue based on the current git branch                           
-  mine, list, l                           - List your issues                                                          
-  query, q                                - Query issues with structured filters                                      
-  title             [issueId]             - Print the issue title                                                     
-  state             [issueId]             - Print the issue's current state                                           
-  start             [issueId]             - Start working on an issue                                                 
-  view, v           [issueId]             - View issue details (default) or open in browser/app                       
-  url               [issueId]             - Print the issue URL                                                       
-  describe          [issueId]             - Print the issue title and Linear-issue trailer                            
-  commits           [issueId]             - Show all commits for a Linear issue (jj only)                             
-  pull-request, pr  [issueId]             - Create a GitHub pull request with issue details                           
-  delete, d         [issueId]             - Delete an issue                                                           
-  create                                  - Create a linear issue                                                     
-  update            [issueId]             - Update a linear issue                                                     
-  comment                                 - Manage issue comments                                                     
-  attach            <issueId> <filepath>  - Create a sidebar link attachment on an issue (images do not render inline)
-  link              <urlOrIssueId> [url]  - Link a URL to an issue                                                    
-  relation                                - Manage issue relations (dependencies)                                     
+  id                                      - Print the issue based on the current git branch                               
+  mine, list, l                           - List your issues                                                              
+  query, q                                - Query issues with structured filters                                          
+  title             [issueId]             - Print the issue title                                                         
+  state             [issueId]             - Print the issue's current state                                               
+  estimate          [issueId]             - Print the issue estimate (prints an empty line when the issue has no estimate)
+  start             [issueId]             - Start working on an issue                                                     
+  view, v           [issueId]             - View issue details (default) or open in browser/app                           
+  url               [issueId]             - Print the issue URL                                                           
+  describe          [issueId]             - Print the issue title and Linear-issue trailer                                
+  commits           [issueId]             - Show all commits for a Linear issue (jj only)                                 
+  pull-request, pr  [issueId]             - Create a GitHub pull request with issue details                               
+  delete, d         [issueId]             - Delete an issue                                                               
+  create                                  - Create a linear issue                                                         
+  update            [issueId]             - Update a linear issue                                                         
+  comment                                 - Manage issue comments                                                         
+  attach            <issueId> <filepath>  - Create a sidebar link attachment on an issue (images do not render inline)    
+  link              <urlOrIssueId> [url]  - Link a URL to an issue                                                        
+  relation                                - Manage issue relations (dependencies)                                         
   agent-session                           - Manage agent sessions for an issue
 ```
 
@@ -301,6 +302,24 @@ Options:
   -h, --help                       - Show this help.                                                
   --workspace              <slug>  - Target workspace (uses credentials)                            
   -r, --references, --ref          - Use 'References' instead of 'Fixes' for the Linear issue link
+```
+
+### estimate
+
+> Print the issue estimate (prints an empty line when the issue has no estimate)
+
+```
+Usage:   linear issue estimate [issueId]
+
+Description:
+
+  Print the issue estimate (prints an empty line when the issue has no estimate)
+
+Options:
+
+  -h, --help           - Show this help.                      
+  --workspace  <slug>  - Target workspace (uses credentials)  
+  -j, --json           - Output as JSON
 ```
 
 ### id
