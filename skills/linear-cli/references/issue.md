@@ -29,6 +29,7 @@ Commands:
   url               [issueId]             - Print the issue URL                                                           
   describe          [issueId]             - Print the issue title and Linear-issue trailer                                
   commits           [issueId]             - Show all commits for a Linear issue (jj only)                                 
+  history           [issueId]             - Show the activity history of an issue                                         
   pull-request, pr  [issueId]             - Create a GitHub pull request with issue details                               
   delete, d         [issueId]             - Delete an issue                                                               
   create                                  - Create a linear issue                                                         
@@ -320,6 +321,25 @@ Options:
   -h, --help           - Show this help.                      
   --workspace  <slug>  - Target workspace (uses credentials)  
   -j, --json           - Output as JSON
+```
+
+### history
+
+> Show the activity history of an issue
+
+```
+Usage:   linear issue history [issueId]
+
+Description:
+
+  Show the activity history of an issue
+
+Options:
+
+  -h, --help            - Show this help.                                                                         
+  --workspace  <slug>   - Target workspace (uses credentials)                                                     
+  -j, --json            - Output as JSON                                                                          
+  --limit      <limit>  - Maximum number of history entries to fetch (default: all, 0 for unlimited)  (Default: 0)
 ```
 
 ### id

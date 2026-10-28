@@ -1,0 +1,238 @@
+export const snapshot = {};
+
+snapshot[`Issue History Command - Help Text 1`] = `
+stdout:
+"
+Usage: history [issueId]
+
+Description:
+
+  Show the activity history of an issue
+
+Options:
+
+  -h, --help           - Show this help.                                                                         
+  -j, --json           - Output as JSON                                                                          
+  --limit     <limit>  - Maximum number of history entries to fetch (default: all, 0 for unlimited)  (Default: \\x1b[33m0\\x1b[39m)
+
+"
+stderr:
+""
+`;
+
+snapshot[`Issue History Command - State, Assignee, Priority, Estimate, Title 1`] = `
+stdout:
+'2024-01-15  Gabriel  Status: Todo → In Progress
+2024-01-15  Gabriel  Assignee: (none) → Gabriel
+2024-01-15  Gabriel  Assignee: Gabriel → Maria
+2024-01-15  Gabriel  Assignee: Maria → (none)
+2024-01-15  Gabriel  Priority: Medium → High
+2024-01-15  Gabriel  Estimate: 3 → 5
+2024-01-15  Gabriel  Title changed: "A" → "B"
+'
+stderr:
+""
+`;
+
+snapshot[`Issue History Command - Labels, Cycle, Project, Team, Parent, Due Date 1`] = `
+stdout:
+"2024-01-15  Gabriel  Labels: +bug, -wip
+2024-01-15  Gabriel  Cycle: (none) → Cycle 7
+2024-01-15  Gabriel  Project: Alpha → Beta
+2024-01-15  Gabriel  Team: Engineering (ENG) → Operations (OPS)
+2024-01-15  Gabriel  Parent: (none) → TEST-1
+2024-01-15  Gabriel  Due date: (none) → 2024-02-01
+2024-01-15  Gabriel  Relation: blocks TEST-9
+"
+stderr:
+""
+`;
+
+snapshot[`Issue History Command - Multiple Changes In One Entry 1`] = `
+stdout:
+"2024-01-14  Linear  Status: (none) → Todo
+2024-01-14  Linear  Priority: (none) → None
+2024-01-15  Gabriel  Status: Todo → Done
+2024-01-15  Gabriel  Assignee: (none) → Maria
+2024-01-15  Gabriel  Description updated
+2024-01-15  Gabriel  Archived
+2024-01-15  Gabriel  Auto-closed
+"
+stderr:
+""
+`;
+
+snapshot[`Issue History Command - No History 1`] = `
+stdout:
+"No history found for this issue
+"
+stderr:
+""
+`;
+
+snapshot[`Issue History Command - JSON Output 1`] = `
+stdout:
+'{
+  "nodes": [
+    {
+      "id": "h1",
+      "createdAt": "2024-01-15T10:00:00Z",
+      "actor": {
+        "name": "gabriel",
+        "displayName": "Gabriel"
+      },
+      "fromState": {
+        "name": "Todo"
+      },
+      "toState": {
+        "name": "In Progress"
+      },
+      "fromAssignee": null,
+      "toAssignee": null,
+      "fromCycle": null,
+      "toCycle": null,
+      "fromProject": null,
+      "toProject": null,
+      "fromTeam": null,
+      "toTeam": null,
+      "fromParent": null,
+      "toParent": null,
+      "addedLabels": [],
+      "removedLabels": [],
+      "fromTitle": null,
+      "toTitle": null,
+      "fromPriority": null,
+      "toPriority": null,
+      "fromEstimate": null,
+      "toEstimate": null,
+      "fromDueDate": null,
+      "toDueDate": null,
+      "updatedDescription": null,
+      "archived": null,
+      "trashed": null,
+      "autoClosed": null,
+      "autoArchived": null,
+      "relationChanges": []
+    }
+  ],
+  "pageInfo": {
+    "hasNextPage": false,
+    "endCursor": null
+  }
+}
+'
+stderr:
+""
+`;
+
+snapshot[`Issue History Command - Pagination Across Two Pages 1`] = `
+stdout:
+'{
+  "nodes": [
+    {
+      "id": "h1",
+      "createdAt": "2024-01-15T10:00:00Z",
+      "actor": {
+        "name": "gabriel",
+        "displayName": "Gabriel"
+      },
+      "fromState": null,
+      "toState": null,
+      "fromAssignee": null,
+      "toAssignee": null,
+      "fromCycle": null,
+      "toCycle": null,
+      "fromProject": null,
+      "toProject": null,
+      "fromTeam": null,
+      "toTeam": null,
+      "fromParent": null,
+      "toParent": null,
+      "addedLabels": [],
+      "removedLabels": [],
+      "fromTitle": null,
+      "toTitle": null,
+      "fromPriority": null,
+      "toPriority": null,
+      "fromEstimate": null,
+      "toEstimate": 3,
+      "fromDueDate": null,
+      "toDueDate": null,
+      "updatedDescription": null,
+      "archived": null,
+      "trashed": null,
+      "autoClosed": null,
+      "autoArchived": null,
+      "relationChanges": []
+    },
+    {
+      "id": "h2",
+      "createdAt": "2024-01-15T11:00:00Z",
+      "actor": {
+        "name": "gabriel",
+        "displayName": "Gabriel"
+      },
+      "fromState": null,
+      "toState": null,
+      "fromAssignee": null,
+      "toAssignee": null,
+      "fromCycle": null,
+      "toCycle": null,
+      "fromProject": null,
+      "toProject": null,
+      "fromTeam": null,
+      "toTeam": null,
+      "fromParent": null,
+      "toParent": null,
+      "addedLabels": [],
+      "removedLabels": [],
+      "fromTitle": null,
+      "toTitle": null,
+      "fromPriority": null,
+      "toPriority": null,
+      "fromEstimate": null,
+      "toEstimate": 5,
+      "fromDueDate": null,
+      "toDueDate": null,
+      "updatedDescription": null,
+      "archived": null,
+      "trashed": null,
+      "autoClosed": null,
+      "autoArchived": null,
+      "relationChanges": []
+    }
+  ],
+  "pageInfo": {
+    "hasNextPage": false,
+    "endCursor": null
+  }
+}
+'
+stderr:
+""
+`;
+
+snapshot[`Issue History Command - Issue Not Found 1`] = `
+stdout:
+""
+stderr:
+"✗ Failed to show issue history: Issue not found: TEST-404
+"
+`;
+
+snapshot[`Issue History Command - Invalid Issue ID 1`] = `
+stdout:
+""
+stderr:
+"✗ Failed to show issue history: Could not determine issue ID
+  Please provide an issue ID like 'ENG-123'.
+"
+`;
+
+snapshot[`Issue History Command - Issue ID Inferred From Branch 1`] = `
+stdout:
+"2024-01-15  Gabriel  Status: Todo → In Progress
+"
+stderr:
+""
+`;
