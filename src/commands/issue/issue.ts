@@ -4,6 +4,7 @@ import { commentCommand } from "./issue-comment.ts"
 import { createCommand } from "./issue-create.ts"
 import { deleteCommand } from "./issue-delete.ts"
 import { describeCommand } from "./issue-describe.ts"
+import { editCommand } from "./issue-edit.ts"
 import { commitsCommand } from "./issue-commits.ts"
 import { historyCommand } from "./issue-history.ts"
 import { idCommand } from "./issue-id.ts"
@@ -45,6 +46,7 @@ export const issueCommand = new Command()
   .command("delete", deleteCommand)
   .command("create", createCommand)
   .command("update", updateCommand)
+  .command("edit", editCommand)
   .command("comment", commentCommand)
   .command("attach", attachCommand)
   .command("link", linkCommand)

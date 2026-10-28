@@ -182,6 +182,7 @@ linear issue commits
 linear issue create
 linear issue delete
 linear issue describe
+linear issue edit
 linear issue estimate
 linear issue history
 linear issue id

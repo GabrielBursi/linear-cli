@@ -34,6 +34,7 @@ Commands:
   delete, d         [issueId]             - Delete an issue                                                               
   create                                  - Create a linear issue                                                         
   update            [issueId]             - Update a linear issue                                                         
+  edit              [issueId]             - Edit the description of an issue                                              
   comment                                 - Manage issue comments                                                         
   attach            <issueId> <filepath>  - Create a sidebar link attachment on an issue (images do not render inline)    
   link              <urlOrIssueId> [url]  - Link a URL to an issue                                                        
@@ -303,6 +304,27 @@ Options:
   -h, --help                       - Show this help.                                                
   --workspace              <slug>  - Target workspace (uses credentials)                            
   -r, --references, --ref          - Use 'References' instead of 'Fixes' for the Linear issue link
+```
+
+### edit
+
+> Edit the description of an issue
+
+```
+Usage:   linear issue edit [issueId]
+
+Description:
+
+  Edit the description of an issue
+
+Options:
+
+  -h, --help                  - Show this help.                                                                        
+  --workspace         <slug>  - Target workspace (uses credentials)                                                    
+  --editor                    - Open the current description in $EDITOR (default when run in a terminal)               
+  --description-file  <path>  - Read the description from a file                                                       
+  --stdin                     - Read the description from stdin                                                        
+  --append                    - Append to the current description (separated by a blank line) instead of replacing it
 ```
 
 ### estimate

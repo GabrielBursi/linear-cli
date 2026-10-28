@@ -144,6 +144,9 @@ linear issue create -t "title" -d "description"  # create with flags
 linear issue create --project "My Project" --milestone "Phase 1"  # create with milestone
 linear issue update    # update an issue (interactive prompts)
 linear issue update ENG-123 --milestone "Phase 2"  # set milestone on existing issue
+linear issue edit      # edit the issue description in $EDITOR
+linear issue edit ENG-123 --description-file desc.md  # replace the description from a file
+cat extra.md | linear issue edit ENG-123 --stdin --append  # append to the description
 linear issue delete    # delete an issue
 linear issue comment list          # list comments on current issue
 linear issue comment add           # add a comment to current issue

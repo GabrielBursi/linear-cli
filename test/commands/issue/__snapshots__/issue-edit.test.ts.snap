@@ -1,0 +1,125 @@
+export const snapshot = {};
+
+snapshot[`Issue Edit Command - Help Text 1`] = `
+stdout:
+"
+Usage: edit [issueId]
+
+Description:
+
+  Edit the description of an issue
+
+Options:
+
+  -h, --help                  - Show this help.                                                           
+  --editor                    - Open the current description in \$EDITOR (default when run in a terminal)  
+  --description-file  <path>  - Read the description from a file                                          
+  --stdin                     - Read the description from stdin                                           
+  --append                    - Append to the current description (separated by a blank line) instead of  
+                                replacing it                                                              
+
+"
+stderr:
+""
+`;
+
+snapshot[`Issue Edit Command - Description File Replaces 1`] = `
+stdout:
+"✓ Updated issue TEST-123: Fix authentication bug in login flow
+https://linear.app/test-team/issue/TEST-123/fix-auth
+"
+stderr:
+""
+`;
+
+snapshot[`Issue Edit Command - Description File Preserves Multiline Markdown 1`] = `
+stdout:
+"✓ Updated issue TEST-123: Fix authentication bug in login flow
+https://linear.app/test-team/issue/TEST-123/fix-auth
+"
+stderr:
+""
+`;
+
+snapshot[`Issue Edit Command - Description File Not Found 1`] = `
+stdout:
+""
+stderr:
+"✗ Failed to edit issue description: File not found: /nonexistent/desc.md
+"
+`;
+
+snapshot[`Issue Edit Command - Append With File 1`] = `
+stdout:
+"✓ Updated issue TEST-123: Fix authentication bug in login flow
+https://linear.app/test-team/issue/TEST-123/fix-auth
+"
+stderr:
+""
+`;
+
+snapshot[`Issue Edit Command - Editor Saves Edited Description 1`] = `
+stdout:
+"Opening TEST-123 in editor...
+✓ Updated issue TEST-123: Fix authentication bug in login flow
+https://linear.app/test-team/issue/TEST-123/fix-auth
+"
+stderr:
+""
+`;
+
+snapshot[`Issue Edit Command - Editor Without Changes Cancels Without API Update 1`] = `
+stdout:
+"Opening TEST-123 in editor...
+No changes detected, update cancelled.
+"
+stderr:
+""
+`;
+
+snapshot[`Issue Edit Command - Editor Emptied Buffer Cancels 1`] = `
+stdout:
+"Opening TEST-123 in editor...
+No changes detected, update cancelled.
+"
+stderr:
+""
+`;
+
+snapshot[`Issue Edit Command - Editor Not Configured Errors 1`] = `
+stdout:
+"Opening TEST-123 in editor...
+"
+stderr:
+"✗ Failed to edit issue description: No editor found
+  Set EDITOR environment variable or configure git editor with: git config --global core.editor <editor>
+"
+`;
+
+snapshot[`Issue Edit Command - Editor With Append Starts Empty 1`] = `
+stdout:
+"Opening TEST-123 in editor...
+✓ Updated issue TEST-123: Fix authentication bug in login flow
+https://linear.app/test-team/issue/TEST-123/fix-auth
+"
+stderr:
+""
+`;
+
+snapshot[`Issue Edit Command - Combined Sources Error 1`] = `
+stdout:
+""
+stderr:
+"✗ Failed to edit issue description: Cannot combine --editor, --description-file and --stdin
+  Choose exactly one source for the new description.
+"
+`;
+
+snapshot[`Issue Edit Command - No Source Without Terminal Errors 1`] = `
+stdout:
+""
+stderr:
+"✗ Failed to edit issue description: No description source provided and stdin is not a terminal
+  Use --stdin to read from stdin, or --description-file <path> to read from a file.
+"
+`;
