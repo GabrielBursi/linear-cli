@@ -73,6 +73,18 @@ export function getPriorityDisplay(priority: number): string {
   return priority.toString()
 }
 
+const PRIORITY_LABELS: Record<number, string> = {
+  0: "None",
+  1: "Urgent",
+  2: "High",
+  3: "Medium",
+  4: "Low",
+}
+
+export function getPriorityLabel(priority: number): string {
+  return PRIORITY_LABELS[priority] ?? priority.toString()
+}
+
 export interface CycleDisplayInfo {
   number: number
   isActive: boolean

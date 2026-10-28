@@ -183,6 +183,7 @@ linear issue create
 linear issue delete
 linear issue describe
 linear issue estimate
+linear issue history
 linear issue id
 linear issue link
 linear issue mine
