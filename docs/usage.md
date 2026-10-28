@@ -159,6 +159,27 @@ update a specific issue:
 linear issue update TEAM-123
 ```
 
+#### edit the description of an issue
+
+open the current description in your editor:
+
+```bash
+linear issue edit TEAM-123
+```
+
+replace the description from a file or stdin:
+
+```bash
+linear issue edit TEAM-123 --description-file desc.md
+cat desc.md | linear issue edit TEAM-123 --stdin
+```
+
+append instead of replacing (adds a blank line between old and new text):
+
+```bash
+linear issue edit TEAM-123 --stdin --append
+```
+
 #### other issue commands
 
 get issue id from current git branch:

@@ -1,3 +1,5 @@
+import { CliError, ValidationError } from "./errors.ts"
+
 export async function getEditor(): Promise<string | null> {
   // Try git config first
   try {
@@ -59,6 +61,66 @@ export async function openEditor(): Promise<string | undefined> {
       error instanceof Error ? error.message : String(error),
     )
     return undefined
+  } finally {
+    // Clean up the temporary file
+    try {
+      await Deno.remove(tempFile)
+    } catch {
+      // Ignore cleanup errors
+    }
+  }
+}
+
+/**
+ * Open editor with initial content and return the edited content
+ */
+export async function openEditorWithContent(
+  initialContent: string,
+): Promise<string | undefined> {
+  const editor = await getEditor()
+  if (!editor) {
+    throw new ValidationError("No editor found", {
+      suggestion:
+        "Set EDITOR environment variable or configure git editor with: git config --global core.editor <editor>",
+    })
+  }
+
+  // Create a temporary file with initial content
+  const tempFile = await Deno.makeTempFile({ suffix: ".md" })
+
+  try {
+    // Write initial content to temp file
+    await Deno.writeTextFile(tempFile, initialContent)
+
+    // Open the editor
+    const process = new Deno.Command(editor, {
+      args: [tempFile],
+      stdin: "inherit",
+      stdout: "inherit",
+      stderr: "inherit",
+    })
+
+    const { success } = await process.output()
+
+    if (!success) {
+      throw new CliError("Editor exited with an error")
+    }
+
+    // Read the content back
+    const content = await Deno.readTextFile(tempFile)
+    const cleaned = content.trim()
+
+    return cleaned.length > 0 ? cleaned : undefined
+  } catch (error) {
+    if (error instanceof CliError || error instanceof ValidationError) {
+      throw error
+    }
+    throw new CliError(
+      `Failed to open editor: ${
+        error instanceof Error ? error.message : String(error)
+      }`,
+      { cause: error },
+    )
   } finally {
     // Clean up the temporary file
     try {
